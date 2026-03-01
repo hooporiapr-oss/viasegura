@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abanderados Vial de Puerto Rico</title>
+  <meta name="description" content="Asistente bilingüe de seguridad vial para zonas de trabajo en Puerto Rico. Bilingual roadway work zone safety assistant.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --deep: #0f1114;
+      --surface: #161a1f;
+      --card: #1c2127;
+      --orange: #FF6B00;
+      --orange-light: #FF9F45;
+      --yellow: #FFD600;
+      --white: #F2F2F2;
+      --muted: #8A919A;
+      --gradient: linear-gradient(135deg, #FF6B00, #FFD600);
+      --radius: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--deep);
+      color: var(--white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .caution-stripe {
+      width: 100%;
+      height: 8px;
+      background: repeating-linear-gradient(-45deg, var(--yellow), var(--yellow) 12px, #111 12px, #111 24px);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 200;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(255,107,0,.05) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 100%, rgba(255,214,0,.03) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .glow-orb { position: fixed; width: 500px; height: 500px; border-radius: 50%; filter: blur(160px); opacity: 0.08; pointer-events: none; z-index: 0; }
+    .glow-orb.orange { background: var(--orange); top: -150px; left: 50%; transform: translateX(-50%); }
+    .glow-orb.yellow { background: var(--yellow); bottom: -200px; right: -100px; opacity: 0.05; }
+
+    .lang-toggle { position: fixed; top: 20px; right: 20px; z-index: 150; display: flex; background: var(--surface); border: 1px solid rgba(255,107,0,.15); border-radius: 50px; overflow: hidden; }
+    .lang-btn { padding: 8px 18px; font-size: 13px; font-weight: 600; border: none; background: transparent; color: var(--muted); cursor: pointer; transition: all .2s ease; font-family: 'Inter', sans-serif; }
+    .lang-btn.active { background: var(--gradient); color: var(--deep); }
+
+    .hero { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 24px 60px; }
+    .hero-image { width: 280px; max-width: 70%; border-radius: 20px; margin-bottom: 28px; animation: fadeInDown .8s ease; filter: drop-shadow(0 0 30px rgba(255,107,0,.2)); }
+
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 8px 20px; border-radius: 50px; background: rgba(255,107,0,.08); border: 1px solid rgba(255,107,0,.15); font-size: 12px; font-weight: 600; color: var(--orange); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 28px; animation: fadeInUp .6s ease .1s both; }
+    .badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #4ADE80; box-shadow: 0 0 8px #4ADE80; animation: pulse-dot 2s infinite; }
+    @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+
+    .hero-title { font-size: clamp(28px, 6vw, 48px); font-weight: 800; line-height: 1.1; margin-bottom: 8px; animation: fadeInUp .6s ease .2s both; }
+    .hero-title .accent { background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-subtitle { font-size: clamp(13px, 2.5vw, 16px); letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 32px; font-weight: 500; animation: fadeInUp .6s ease .3s both; }
+    .hero-desc { max-width: 560px; font-size: 16px; line-height: 1.8; color: var(--muted); font-weight: 300; margin-bottom: 48px; animation: fadeInUp .6s ease .4s both; }
+
+    .features { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 20px 24px 80px; display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px; }
+    .feature-card { padding: 28px 24px; border-radius: var(--radius); background: var(--card); border: 1px solid rgba(255,107,0,.06); transition: all .3s ease; }
+    .feature-card:hover { border-color: rgba(255,107,0,.15); transform: translateY(-4px); }
+    .feature-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 16px; background: rgba(255,107,0,.08); }
+    .feature-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .feature-text { font-size: 14px; line-height: 1.6; color: var(--muted); font-weight: 300; }
+
+    /* ACCORDION */
+    .guide { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 0 24px 60px; }
+    .guide-title { font-size: 28px; font-weight: 800; text-align: center; margin-bottom: 8px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .guide-sub { text-align: center; color: var(--muted); font-size: 14px; margin-bottom: 40px; }
+
+    .acc-item { margin-bottom: 12px; overflow: hidden; border-radius: var(--radius); }
+    .acc-trigger { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; background: var(--card); border: 1px solid rgba(255,107,0,.06); border-radius: var(--radius); color: var(--white); font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700; cursor: pointer; transition: all .3s ease; text-align: left; outline: none; -webkit-appearance: none; appearance: none; }
+    .acc-trigger:hover { border-color: rgba(255,107,0,.2); }
+    .acc-arrow { color: var(--orange); font-size: 18px; transition: transform .3s ease; flex-shrink: 0; margin-left: 12px; display: inline-block; }
+
+    .acc-panel { display: none; padding: 20px 24px; font-size: 14px; line-height: 1.8; color: var(--muted); background: var(--surface); border: 1px solid rgba(255,107,0,.04); border-top: none; border-radius: 0 0 var(--radius) var(--radius); }
+
+    .acc-item.is-open .acc-trigger { border-radius: var(--radius) var(--radius) 0 0; border-color: rgba(255,107,0,.2); }
+    .acc-item.is-open .acc-arrow { transform: rotate(180deg); }
+    .acc-item.is-open .acc-panel { display: block; }
+
+    .disclaimer { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; padding: 0 24px 60px; text-align: center; }
+    .disclaimer-box { padding: 20px 24px; border-radius: var(--radius); background: rgba(255,214,0,.04); border: 1px solid rgba(255,214,0,.1); font-size: 13px; line-height: 1.6; color: var(--muted); }
+
+    footer { position: relative; z-index: 1; text-align: center; padding: 40px 24px; border-top: 1px solid rgba(255,107,0,.06); font-size: 13px; color: var(--muted); }
+
+    elevenlabs-convai { position: fixed !important; bottom: 24px !important; right: 24px !important; left: auto !important; top: auto !important; z-index: 999 !important; }
+
+    .lang-es { display: inline; }
+    .lang-en { display: none; }
+    body.en .lang-es { display: none; }
+    body.en .lang-en { display: inline; }
+
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 600px) {
+      .hero { padding: 70px 20px 40px; }
+      .hero-image { width: 220px; }
+      .hero-desc { font-size: 15px; }
+      .features { padding: 20px 20px 60px; }
+      .feature-card { padding: 24px 20px; }
+      .acc-trigger { padding: 16px 20px; font-size: 14px; }
+      .acc-panel { padding: 16px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="caution-stripe"></div>
+  <div class="glow-orb orange"></div>
+  <div class="glow-orb yellow"></div>
+
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btnES">ES</button>
+    <button class="lang-btn" id="btnEN">EN</button>
+  </div>
+
+  <section class="hero">
+    <img src="viasegura-hero.png" alt="Abanderados Vial de Puerto Rico" class="hero-image">
+    <div class="badge">
+      <span class="lang-es">Agente de Voz — Activo</span>
+      <span class="lang-en">Voice Agent — Live</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="lang-es"><span class="accent">Seguridad Vial</span><br>en Zonas de Trabajo</span>
+      <span class="lang-en"><span class="accent">Roadway Work Zone</span><br>Safety</span>
+    </h1>
+    <p class="hero-subtitle">
+      <span class="lang-es">Puerto Rico</span>
+      <span class="lang-en">Puerto Rico</span>
+    </p>
+    <p class="hero-desc">
+      <span class="lang-es">Tu asistente bilingüe de seguridad vial para zonas de trabajo en Puerto Rico. Orientación sobre prácticas seguras, prevención de riesgos, control de tránsito y situaciones que requieren atención especial. Siempre alineado con los principios del MUTCD.</span>
+      <span class="lang-en">Your bilingual roadway work zone safety assistant for Puerto Rico. Guidance on safe practices, risk prevention, traffic control, and situations requiring special attention. Always aligned with MUTCD principles.</span>
+    </p>
+  </section>
+
+  <section class="features">
+    <div class="feature-card">
+      <div class="feature-icon">🦺</div>
+      <div class="feature-title">
+        <span class="lang-es">Seguridad en Zona de Trabajo</span>
+        <span class="lang-en">Work Zone Safety</span>
+      </div>
+      <p class="feature-text">
+        <span class="lang-es">Orientación sobre prácticas seguras, identificación de riesgos, y protección para trabajadores y el público en zonas viales activas.</span>
+        <span class="lang-en">Guidance on safe practices, risk identification, and protection for workers and the public in active roadway work zones.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🚦</div>
+      <div class="feature-title">
+        <span class="lang-es">Control de Tránsito</span>
+        <span class="lang-en">Traffic Control</span>
+      </div>
+      <p class="feature-text">
+        <span class="lang-es">Información sobre señalización, dispositivos de canalización, y cuándo el control humano del tránsito puede ser necesario.</span>
+        <span class="lang-en">Information on signage, channelization devices, and when human traffic control (flaggers) may be necessary.</span>
+      </p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📋</div>
+      <div class="feature-title">
+        <span class="lang-es">Cumplimiento y Prevención</span>
+        <span class="lang-en">Compliance & Prevention</span>
+      </div>
+      <p class="feature-text">
+        <span class="lang-es">Orientación alineada con MUTCD y principios de seguridad ocupacional reconocidos. Prevención sobre reacción.</span>
+        <span class="lang-en">Guidance aligned with MUTCD and recognized occupational safety principles. Prevention over reaction.</span>
+      </p>
+    </div>
+  </section>
+
+  <section class="guide">
+    <h2 class="guide-title">
+      <span class="lang-es">Guía Rápida de Seguridad Vial</span>
+      <span class="lang-en">Quick Roadway Safety Guide</span>
+    </h2>
+    <p class="guide-sub">
+      <span class="lang-es">Herramienta práctica para contratistas, supervisores y brigadas</span>
+      <span class="lang-en">Practical tool for contractors, supervisors, and work crews</span>
+    </p>
+
+    <div class="acc-item">
+      <div class="acc-trigger">
+        <span><span class="lang-es">⚠️ Riesgos Comunes en Zonas de Trabajo</span><span class="lang-en">⚠️ Common Risks in Work Zones</span></span>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-panel">
+        <span class="lang-es">Las zonas de trabajo presentan riesgos como vehículos a alta velocidad, conductores distraídos, visibilidad limitada, condiciones climáticas adversas, maquinaria pesada y señalización inadecuada. Identificar estos peligros permite implementar medidas preventivas que protejan vidas y operaciones.</span>
+        <span class="lang-en">Work zones present risks such as high-speed vehicles, distracted drivers, limited visibility, adverse weather conditions, heavy machinery, and inadequate signage. Identifying these hazards allows for implementing preventive measures that protect lives and operations.</span>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-trigger">
+        <span><span class="lang-es">🦺 Medidas Básicas de Seguridad</span><span class="lang-en">🦺 Basic Safety Measures</span></span>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-panel">
+        <span class="lang-es">Planificación previa del trabajo. Señalización anticipada y visible. Uso correcto del Equipo de Protección Personal (EPP). Ubicación segura del personal. Comunicación efectiva. Inspección continua de la zona de trabajo.</span>
+        <span class="lang-en">Prior work planning. Advance and visible signage. Correct use of Personal Protective Equipment (PPE). Safe personnel positioning. Effective communication. Continuous inspection of the work zone.</span>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-trigger">
+        <span><span class="lang-es">🔶 Dispositivos de Canalización</span><span class="lang-en">🔶 Channelization Devices</span></span>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-panel">
+        <span class="lang-es">Los dispositivos como conos, barriles, vallas y luces intermitentes ayudan a guiar el tránsito, delimitar áreas de trabajo y proteger al personal. Su correcta colocación y mantenimiento son esenciales para prevenir incidentes.</span>
+        <span class="lang-en">Devices such as cones, barrels, barriers, and flashing lights help guide traffic, delineate work areas, and protect personnel. Their correct placement and maintenance are essential to prevent incidents.</span>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-trigger">
+        <span><span class="lang-es">🚦 Cuándo Evaluar Control Humano del Tránsito</span><span class="lang-en">🚦 When to Evaluate Human Traffic Control</span></span>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-panel">
+        <span class="lang-es">Se debe evaluar el control humano cuando exista alto flujo vehicular, visibilidad limitada, cambios frecuentes en el tránsito, presencia de peatones, trabajos nocturnos o vías de alta velocidad. La intervención humana puede prevenir confusión y reducir riesgos.</span>
+        <span class="lang-en">Human traffic control should be evaluated when there is high vehicle flow, limited visibility, frequent traffic changes, presence of pedestrians, nighttime work, or high-speed roadways. Human intervention can prevent confusion and reduce risks.</span>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-trigger">
+        <span><span class="lang-es">👷 Beneficios del Personal Preparado</span><span class="lang-en">👷 Benefits of Prepared Personnel</span></span>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-panel">
+        <span class="lang-es">El personal capacitado reconoce riesgos, toma mejores decisiones, mejora la comunicación, cumple normas, protege vidas y fortalece la cultura de seguridad.</span>
+        <span class="lang-en">Trained personnel recognize risks, make better decisions, improve communication, comply with regulations, protect lives, and strengthen the safety culture.</span>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-trigger">
+        <span><span class="lang-es">📝 Registro Preventivo de Incidentes</span><span class="lang-en">📝 Preventive Incident Reporting</span></span>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-panel">
+        <span class="lang-es">Documentar incidentes, condiciones inseguras y acciones correctivas permite mejorar la planificación, demostrar diligencia y fortalecer la prevención.</span>
+        <span class="lang-en">Documenting incidents, unsafe conditions, and corrective actions helps improve planning, demonstrate diligence, and strengthen prevention.</span>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-trigger">
+        <span><span class="lang-es">✅ Checklist Básico de Seguridad</span><span class="lang-en">✅ Basic Safety Checklist</span></span>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-panel">
+        <span class="lang-es"><strong style="color:var(--orange);">Antes de iniciar:</strong> evaluar riesgos, señalizar adecuadamente, usar EPP.<br><br><strong style="color:var(--orange);">Durante la operación:</strong> verificar dispositivos, mantener comunicación y registrar incidentes.<br><br><strong style="color:var(--orange);">Después:</strong> inspeccionar el área y corregir condiciones inseguras.</span>
+        <span class="lang-en"><strong style="color:var(--orange);">Before starting:</strong> evaluate risks, place adequate signage, use PPE.<br><br><strong style="color:var(--orange);">During operations:</strong> verify devices, maintain communication, and record incidents.<br><br><strong style="color:var(--orange);">After:</strong> inspect the area and correct unsafe conditions.</span>
+      </div>
+    </div>
+
+    <div class="acc-item">
+      <div class="acc-trigger">
+        <span><span class="lang-es">✍️ Sobre la Autora</span><span class="lang-en">✍️ About The Author</span></span>
+        <span class="acc-arrow">▾</span>
+      </div>
+      <div class="acc-panel">
+        <span class="lang-es"><strong style="color:var(--orange);">Bethzaida Cirino</strong><br>Técnica de Campo y Documentación Operacional en proyectos de construcción de carreteras (infraestructura vial) en Puerto Rico.<br><br>A lo largo de los últimos años, ha trabajado directamente en el desarrollo de obras viales, colaborando estrechamente con ingenieros, obreros y personal de seguridad vial. Ha estado a cargo de documentar operaciones diarias, coordinar entregas y vaciados, y velar por el cumplimiento riguroso de las normas de seguridad en zonas de construcción activa.<br><br>Su experiencia incluye la elaboración de reportes diarios junto a ingenieros tanto en proyectos de urbanizaciones como en construcción de carreteras, lo que le ha permitido observar de cerca la labor esencial del abanderado. A raíz de esta vivencia, comprendió la falta de materiales educativos accesibles, claros y adaptados a las necesidades reales del campo.<br><br><strong style="color:var(--orange);">Certificaciones:</strong><br>• OSHA 30 Horas — Capacitada, aprobada y certificada<br>• Able Safety Consulting — Estado de New York — Certificada<br>• ATSSA (American Traffic Safety Services Association) — Nacional — Capacitada, aprobada y certificada<br><br>La creación de este manual surge como respuesta a una necesidad urgente: formar y profesionalizar a los abanderados de Puerto Rico. Una herramienta práctica, alineada con la 11.ª edición del MUTCD, que no solo sirve para capacitar, sino también para dignificar esta labor tan crítica y muchas veces poco reconocida.<br><br><em>"Mi meta es contribuir a la seguridad vial, al fortalecimiento del conocimiento técnico en el campo y a que cada abanderado tenga la preparación necesaria para ejercer su función con seguridad, respeto y confianza."</em></span>
+        <span class="lang-en"><strong style="color:var(--orange);">Bethzaida Cirino</strong><br>Field Technician and Operational Documentation Specialist in highway construction projects (road infrastructure) in Puerto Rico.<br><br>Over the past several years, she has worked directly in the development of road construction projects, collaborating closely with engineers, workers, and road safety personnel. She has been responsible for documenting daily operations, coordinating deliveries and pours, and ensuring strict compliance with safety standards in active construction zones.<br><br>Her experience includes preparing daily reports alongside engineers in both residential development and highway construction projects, which has given her a close-up view of the essential role of the flagger. From this experience, she recognized the lack of accessible, clear educational materials adapted to the real needs of the field.<br><br><strong style="color:var(--orange);">Certifications:</strong><br>• OSHA 30-Hour — Trained, approved, and certified<br>• Able Safety Consulting — State of New York — Certified<br>• ATSSA (American Traffic Safety Services Association) — National — Trained, approved, and certified<br><br>This manual was created in response to an urgent need: to train and professionalize the flaggers of Puerto Rico. A practical tool aligned with the 11th edition of the MUTCD, designed not only to train but also to dignify this critical and often underrecognized work.<br><br><em>"My goal is to contribute to road safety, to strengthen technical knowledge in the field, and to ensure that every flagger has the preparation needed to perform their role with safety, respect, and confidence."</em></span>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="disclaimer">
+    <div class="disclaimer-box">
+      <span class="lang-es">Este asistente ofrece orientación informativa y educativa. No sustituye reglamentos oficiales, políticas patronales, ni asesoría legal. Siempre consulte con supervisores y personal competente para decisiones específicas en su proyecto.</span>
+      <span class="lang-en">This assistant provides informational and educational guidance. It does not replace official regulations, employer policies, or legal advice. Always consult with supervisors and competent personnel for project-specific decisions.</span>
+    </div>
+  </section>
+
+  <!-- Browser Detection Popup -->
+  <div id="browserWarning" style="display:none;position:fixed;bottom:24px;right:24px;z-index:998;max-width:300px;padding:20px 24px;border-radius:var(--radius);background:var(--card);border:2px solid var(--yellow);box-shadow:0 8px 32px rgba(0,0,0,.5);font-size:14px;line-height:1.7;color:var(--white);text-align:center;">
+    <div style="font-size:32px;margin-bottom:8px;">📱</div>
+    <span class="lang-es"><strong style="color:var(--yellow);">Abre esta página en Safari</strong><br>para activar el asistente de voz.<br><span style="font-size:12px;color:var(--muted);margin-top:8px;display:block;">Copia el enlace: viasegura.zone<br>y ábrelo en Safari</span></span>
+    <span class="lang-en"><strong style="color:var(--yellow);">Open this page in Safari</strong><br>to activate the voice assistant.<br><span style="font-size:12px;color:var(--muted);margin-top:8px;display:block;">Copy the link: viasegura.zone<br>and open it in Safari</span></span>
+  </div>
+
+  <footer>
+    <div>Abanderados Vial de Puerto Rico 🇵🇷</div>
+    <div style="margin-top:16px;font-size:12px;">Copyright © 2026. GoStar Digital LLC. All Rights Reserved.</div>
+    <div style="margin-top:10px;font-size:12px;">
+      <a href="privacy.html" style="color:var(--muted);text-decoration:none;margin-right:16px;">
+        <span class="lang-es">Política de Privacidad</span>
+        <span class="lang-en">Privacy Policy</span>
+      </a>
+      <a href="terms.html" style="color:var(--muted);text-decoration:none;">
+        <span class="lang-es">Términos de Uso</span>
+        <span class="lang-en">Terms of Use</span>
+      </a>
+    </div>
+  </footer>
+
+  <!--WIDGET_START-->
+  <elevenlabs-convai agent-id="agent_9101kjkezryne7prd85mt7g3mdah"></elevenlabs-convai>
+  <script src="https://elevenlabs.io/convai-widget/index.js" async type="text/javascript"></script>
+  <!--WIDGET_END-->
+
+  <script>
+    // Language Toggle
+    document.getElementById('btnES').addEventListener('click', function() {
+      document.body.classList.remove('en');
+      this.classList.add('active');
+      document.getElementById('btnEN').classList.remove('active');
+      document.documentElement.lang = 'es';
+    });
+    document.getElementById('btnEN').addEventListener('click', function() {
+      document.body.classList.add('en');
+      this.classList.add('active');
+      document.getElementById('btnES').classList.remove('active');
+      document.documentElement.lang = 'en';
+    });
+
+    // Accordion - simple click toggle
+    var triggers = document.querySelectorAll('.acc-trigger');
+    for (var i = 0; i < triggers.length; i++) {
+      triggers[i].addEventListener('click', function() {
+        var parent = this.parentElement;
+        if (parent.classList.contains('is-open')) {
+          parent.classList.remove('is-open');
+        } else {
+          parent.classList.add('is-open');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
