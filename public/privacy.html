@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidad — ViaSegura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --deep: #0f1114; --surface: #161a1f; --card: #1c2127;
+      --orange: #FF6B00; --yellow: #FFD600; --white: #F2F2F2; --muted: #8A919A;
+      --gradient: linear-gradient(135deg, #FF6B00, #FFD600); --radius: 16px;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--deep); color: var(--white); min-height: 100vh; }
+
+    .caution-stripe { width: 100%; height: 8px; background: repeating-linear-gradient(-45deg, var(--yellow), var(--yellow) 12px, #111 12px, #111 24px); position: fixed; top: 0; left: 0; z-index: 200; }
+
+    .lang-toggle { position: fixed; top: 20px; right: 20px; z-index: 150; display: flex; background: var(--surface); border: 1px solid rgba(255,107,0,.15); border-radius: 50px; overflow: hidden; }
+    .lang-btn { padding: 8px 18px; font-size: 13px; font-weight: 600; border: none; background: transparent; color: var(--muted); cursor: pointer; transition: all .2s ease; font-family: 'Inter', sans-serif; }
+    .lang-btn.active { background: var(--gradient); color: var(--deep); }
+
+    .back-link { position: fixed; top: 20px; left: 20px; z-index: 150; color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 600; }
+    .back-link:hover { color: var(--yellow); }
+
+    .content { max-width: 720px; margin: 0 auto; padding: 80px 24px 60px; position: relative; z-index: 1; }
+    .page-title { font-size: 32px; font-weight: 800; margin-bottom: 8px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-date { font-size: 13px; color: var(--muted); margin-bottom: 40px; }
+
+    .section { margin-bottom: 32px; }
+    .section-title { font-size: 18px; font-weight: 700; color: var(--orange); margin-bottom: 12px; }
+    .section p { font-size: 14px; line-height: 1.8; color: var(--muted); margin-bottom: 12px; }
+
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid rgba(255,107,0,.06); font-size: 13px; color: var(--muted); }
+
+    .lang-es { display: inline; }
+    .lang-en { display: none; }
+    body.en .lang-es { display: none; }
+    body.en .lang-en { display: inline; }
+  </style>
+</head>
+<body>
+
+  <div class="caution-stripe"></div>
+  <a href="index.html" class="back-link">← <span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
+
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btnES">ES</button>
+    <button class="lang-btn" id="btnEN">EN</button>
+  </div>
+
+  <div class="content">
+
+    <h1 class="page-title">
+      <span class="lang-es">Política de Privacidad</span>
+      <span class="lang-en">Privacy Policy</span>
+    </h1>
+    <p class="page-date">
+      <span class="lang-es">Última actualización: 28 de febrero de 2026</span>
+      <span class="lang-en">Last updated: February 28, 2026</span>
+    </p>
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">1. Introducción</span>
+        <span class="lang-en">1. Introduction</span>
+      </div>
+      <p>
+        <span class="lang-es">ViaSegura, operado por GoStar Digital LLC ("nosotros", "nuestro"), opera el sitio web viasegura.zone y el asistente de voz de seguridad vial asociado (el "Servicio"). Esta Política de Privacidad describe cómo recopilamos, usamos y protegemos su información cuando utiliza nuestro Servicio. Al usar el Servicio, usted acepta las prácticas descritas en esta política.</span>
+        <span class="lang-en">ViaSegura, operated by GoStar Digital LLC ("we", "our", "us"), operates the viasegura.zone website and the associated roadway safety voice assistant (the "Service"). This Privacy Policy describes how we collect, use, and protect your information when you use our Service. By using the Service, you agree to the practices described in this policy.</span>
+      </p>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">2. Información que Recopilamos</span>
+        <span class="lang-en">2. Information We Collect</span>
+      </div>
+      <p>
+        <span class="lang-es"><strong>Información proporcionada voluntariamente:</strong> Cuando se suscribe al Servicio, podemos recopilar su nombre, dirección de correo electrónico e información de pago a través de nuestro procesador de pagos (Stripe). No almacenamos datos de tarjetas de crédito directamente.</span>
+        <span class="lang-en"><strong>Voluntarily provided information:</strong> When you subscribe to the Service, we may collect your name, email address, and payment information through our payment processor (Stripe). We do not store credit card data directly.</span>
+      </p>
+      <p>
+        <span class="lang-es"><strong>Datos de conversaciones de voz:</strong> Las conversaciones con el asistente de voz son procesadas por ElevenLabs, nuestro proveedor de tecnología de voz. Estas conversaciones pueden ser procesadas temporalmente para generar respuestas pero no son almacenadas permanentemente por ViaSegura con fines de identificación personal.</span>
+        <span class="lang-en"><strong>Voice conversation data:</strong> Conversations with the voice assistant are processed by ElevenLabs, our voice technology provider. These conversations may be temporarily processed to generate responses but are not permanently stored by ViaSegura for personal identification purposes.</span>
+      </p>
+      <p>
+        <span class="lang-es"><strong>Datos de uso:</strong> Podemos recopilar información técnica como tipo de navegador, dispositivo, dirección IP y páginas visitadas para mejorar el Servicio.</span>
+        <span class="lang-en"><strong>Usage data:</strong> We may collect technical information such as browser type, device, IP address, and pages visited to improve the Service.</span>
+      </p>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">3. Cómo Usamos su Información</span>
+        <span class="lang-en">3. How We Use Your Information</span>
+      </div>
+      <p>
+        <span class="lang-es">Usamos la información recopilada para: proveer y mantener el Servicio, procesar pagos y suscripciones, mejorar la calidad del Servicio, comunicarnos con usted sobre su cuenta o cambios en el Servicio, y cumplir con obligaciones legales aplicables.</span>
+        <span class="lang-en">We use the information collected to: provide and maintain the Service, process payments and subscriptions, improve the quality of the Service, communicate with you about your account or changes to the Service, and comply with applicable legal obligations.</span>
+      </p>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">4. Proveedores de Servicios Terceros</span>
+        <span class="lang-en">4. Third-Party Service Providers</span>
+      </div>
+      <p>
+        <span class="lang-es">Utilizamos los siguientes proveedores terceros que pueden procesar datos según sus propias políticas de privacidad: ElevenLabs (procesamiento de voz e inteligencia artificial), Stripe (procesamiento de pagos), Render (alojamiento web), y Anthropic/Claude (modelo de lenguaje). Le recomendamos revisar las políticas de privacidad de estos proveedores.</span>
+        <span class="lang-en">We use the following third-party providers who may process data according to their own privacy policies: ElevenLabs (voice processing and artificial intelligence), Stripe (payment processing), Render (web hosting), and Anthropic/Claude (language model). We recommend reviewing the privacy policies of these providers.</span>
+      </p>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">5. Seguridad de los Datos</span>
+        <span class="lang-en">5. Data Security</span>
+      </div>
+      <p>
+        <span class="lang-es">Implementamos medidas de seguridad razonables para proteger su información. Sin embargo, ningún método de transmisión por internet o almacenamiento electrónico es completamente seguro. No podemos garantizar la seguridad absoluta de sus datos.</span>
+        <span class="lang-en">We implement reasonable security measures to protect your information. However, no method of internet transmission or electronic storage is completely secure. We cannot guarantee the absolute security of your data.</span>
+      </p>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">6. Retención de Datos</span>
+        <span class="lang-en">6. Data Retention</span>
+      </div>
+      <p>
+        <span class="lang-es">Retenemos su información personal solo durante el tiempo necesario para cumplir con los propósitos descritos en esta política o según lo requiera la ley. Si cancela su suscripción, eliminaremos su información personal dentro de un plazo razonable, excepto cuando la retención sea necesaria por obligaciones legales.</span>
+        <span class="lang-en">We retain your personal information only for as long as necessary to fulfill the purposes described in this policy or as required by law. If you cancel your subscription, we will delete your personal information within a reasonable timeframe, except where retention is required by legal obligations.</span>
+      </p>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">7. Sus Derechos</span>
+        <span class="lang-en">7. Your Rights</span>
+      </div>
+      <p>
+        <span class="lang-es">Usted tiene derecho a: acceder a la información personal que tenemos sobre usted, solicitar la corrección de información inexacta, solicitar la eliminación de su información personal, y cancelar su suscripción en cualquier momento. Para ejercer estos derechos, contáctenos a través de la información proporcionada al final de esta política.</span>
+        <span class="lang-en">You have the right to: access the personal information we hold about you, request correction of inaccurate information, request deletion of your personal information, and cancel your subscription at any time. To exercise these rights, contact us through the information provided at the end of this policy.</span>
+      </p>
+    </div>
+
+    <!-- Section 8 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">8. Menores de Edad</span>
+        <span class="lang-en">8. Minors</span>
+      </div>
+      <p>
+        <span class="lang-es">El Servicio no está dirigido a personas menores de 18 años. No recopilamos intencionalmente información personal de menores de edad. Si descubrimos que hemos recopilado información de un menor, la eliminaremos de inmediato.</span>
+        <span class="lang-en">The Service is not directed at persons under 18 years of age. We do not intentionally collect personal information from minors. If we discover that we have collected information from a minor, we will delete it immediately.</span>
+      </p>
+    </div>
+
+    <!-- Section 9 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">9. Cambios a esta Política</span>
+        <span class="lang-en">9. Changes to This Policy</span>
+      </div>
+      <p>
+        <span class="lang-es">Podemos actualizar esta Política de Privacidad periódicamente. Le notificaremos sobre cambios significativos publicando la nueva política en esta página y actualizando la fecha de "última actualización". Su uso continuado del Servicio después de los cambios constituye su aceptación de la política revisada.</span>
+        <span class="lang-en">We may update this Privacy Policy periodically. We will notify you of significant changes by posting the new policy on this page and updating the "last updated" date. Your continued use of the Service after changes constitutes your acceptance of the revised policy.</span>
+      </p>
+    </div>
+
+    <!-- Section 10 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">10. Contacto</span>
+        <span class="lang-en">10. Contact</span>
+      </div>
+      <p>
+        <span class="lang-es">Si tiene preguntas sobre esta Política de Privacidad, puede contactarnos a través de viasegura.zone. GoStar Digital LLC, San Juan, Puerto Rico.</span>
+        <span class="lang-en">If you have questions about this Privacy Policy, you may contact us through viasegura.zone. GoStar Digital LLC, San Juan, Puerto Rico.</span>
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div>ViaSegura — GoStar Digital LLC — viasegura.zone 🇵🇷</div>
+  </footer>
+
+  <script>
+    document.getElementById('btnES').addEventListener('click', function() {
+      document.body.classList.remove('en');
+      this.classList.add('active');
+      document.getElementById('btnEN').classList.remove('active');
+      document.documentElement.lang = 'es';
+    });
+    document.getElementById('btnEN').addEventListener('click', function() {
+      document.body.classList.add('en');
+      this.classList.add('active');
+      document.getElementById('btnES').classList.remove('active');
+      document.documentElement.lang = 'en';
+    });
+  </script>
+
+</body>
+</html>
