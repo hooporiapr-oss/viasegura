@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Términos de Uso — ViaSegura</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --deep: #0f1114; --surface: #161a1f; --card: #1c2127;
+      --orange: #FF6B00; --yellow: #FFD600; --white: #F2F2F2; --muted: #8A919A;
+      --gradient: linear-gradient(135deg, #FF6B00, #FFD600); --radius: 16px;
+    }
+    body { font-family: 'Inter', sans-serif; background: var(--deep); color: var(--white); min-height: 100vh; }
+
+    .caution-stripe { width: 100%; height: 8px; background: repeating-linear-gradient(-45deg, var(--yellow), var(--yellow) 12px, #111 12px, #111 24px); position: fixed; top: 0; left: 0; z-index: 200; }
+
+    .lang-toggle { position: fixed; top: 20px; right: 20px; z-index: 150; display: flex; background: var(--surface); border: 1px solid rgba(255,107,0,.15); border-radius: 50px; overflow: hidden; }
+    .lang-btn { padding: 8px 18px; font-size: 13px; font-weight: 600; border: none; background: transparent; color: var(--muted); cursor: pointer; transition: all .2s ease; font-family: 'Inter', sans-serif; }
+    .lang-btn.active { background: var(--gradient); color: var(--deep); }
+
+    .back-link { position: fixed; top: 20px; left: 20px; z-index: 150; color: var(--orange); text-decoration: none; font-size: 14px; font-weight: 600; }
+    .back-link:hover { color: var(--yellow); }
+
+    .content { max-width: 720px; margin: 0 auto; padding: 80px 24px 60px; position: relative; z-index: 1; }
+    .page-title { font-size: 32px; font-weight: 800; margin-bottom: 8px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .page-date { font-size: 13px; color: var(--muted); margin-bottom: 40px; }
+
+    .section { margin-bottom: 32px; }
+    .section-title { font-size: 18px; font-weight: 700; color: var(--orange); margin-bottom: 12px; }
+    .section p { font-size: 14px; line-height: 1.8; color: var(--muted); margin-bottom: 12px; }
+
+    .highlight-box { padding: 20px 24px; border-radius: var(--radius); background: rgba(255,107,0,.06); border: 1px solid rgba(255,107,0,.15); margin-bottom: 12px; }
+    .highlight-box p { color: var(--white); font-weight: 500; }
+
+    footer { text-align: center; padding: 40px 24px; border-top: 1px solid rgba(255,107,0,.06); font-size: 13px; color: var(--muted); }
+
+    .lang-es { display: inline; }
+    .lang-en { display: none; }
+    body.en .lang-es { display: none; }
+    body.en .lang-en { display: inline; }
+  </style>
+</head>
+<body>
+
+  <div class="caution-stripe"></div>
+  <a href="index.html" class="back-link">← <span class="lang-es">Inicio</span><span class="lang-en">Home</span></a>
+
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btnES">ES</button>
+    <button class="lang-btn" id="btnEN">EN</button>
+  </div>
+
+  <div class="content">
+
+    <h1 class="page-title">
+      <span class="lang-es">Términos de Uso</span>
+      <span class="lang-en">Terms of Use</span>
+    </h1>
+    <p class="page-date">
+      <span class="lang-es">Última actualización: 28 de febrero de 2026</span>
+      <span class="lang-en">Last updated: February 28, 2026</span>
+    </p>
+
+    <!-- CRITICAL DISCLAIMER BOX -->
+    <div class="highlight-box">
+      <p>
+        <span class="lang-es">⚠️ AVISO IMPORTANTE: ViaSegura es una herramienta de referencia informativa y educativa ÚNICAMENTE. NO sustituye la supervisión en campo, los reglamentos oficiales, las políticas de seguridad del patrono, el juicio profesional, ni la asesoría legal. NUNCA tome decisiones operacionales de seguridad basándose únicamente en la información proporcionada por este servicio.</span>
+        <span class="lang-en">⚠️ IMPORTANT NOTICE: ViaSegura is an informational and educational reference tool ONLY. It does NOT replace on-site supervision, official regulations, employer safety policies, professional judgment, or legal advice. NEVER make operational safety decisions based solely on information provided by this service.</span>
+      </p>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">1. Aceptación de los Términos</span>
+        <span class="lang-en">1. Acceptance of Terms</span>
+      </div>
+      <p>
+        <span class="lang-es">Al acceder o utilizar el sitio web viasegura.zone, operado por GoStar Digital LLC, y el asistente de voz de seguridad vial (el "Servicio"), usted acepta estar sujeto a estos Términos de Uso. Si no está de acuerdo con alguna parte de estos términos, no debe utilizar el Servicio. El uso del Servicio, incluyendo la prueba gratuita, constituye la aceptación total de estos términos.</span>
+        <span class="lang-en">By accessing or using the viasegura.zone website, operated by GoStar Digital LLC, and the roadway safety voice assistant (the "Service"), you agree to be bound by these Terms of Use. If you do not agree with any part of these terms, you must not use the Service. Use of the Service, including the free trial, constitutes full acceptance of these terms.</span>
+      </p>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">2. Naturaleza del Servicio — Solo Referencia Informativa</span>
+        <span class="lang-en">2. Nature of the Service — Informational Reference Only</span>
+      </div>
+      <div class="highlight-box">
+        <p>
+          <span class="lang-es">El Servicio proporciona orientación general de referencia sobre seguridad vial en zonas de trabajo. TODA la información es de naturaleza educativa e informativa. El Servicio NO constituye asesoramiento profesional de seguridad, asesoría legal, órdenes operacionales, certificación de ningún tipo, ni un sustituto de la capacitación formal requerida.</span>
+          <span class="lang-en">The Service provides general reference guidance on roadway work zone safety. ALL information is educational and informational in nature. The Service does NOT constitute professional safety advice, legal counsel, operational orders, certification of any kind, or a substitute for required formal training.</span>
+        </p>
+      </div>
+      <p>
+        <span class="lang-es">El Servicio está diseñado para complementar — nunca reemplazar — la supervisión directa en campo, los protocolos de seguridad del patrono, los reglamentos oficiales aplicables incluyendo el MUTCD, las normas de OSHA y las regulaciones locales, estatales y federales, y el juicio profesional de personal competente y certificado.</span>
+        <span class="lang-en">The Service is designed to complement — never replace — direct on-site supervision, employer safety protocols, applicable official regulations including the MUTCD, OSHA standards and local, state, and federal regulations, and the professional judgment of competent and certified personnel.</span>
+      </p>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">3. Limitación de Responsabilidad</span>
+        <span class="lang-en">3. Limitation of Liability</span>
+      </div>
+      <div class="highlight-box">
+        <p>
+          <span class="lang-es">EN LA MÁXIMA MEDIDA PERMITIDA POR LA LEY APLICABLE, VIASEGURA, GOSTAR DIGITAL LLC, SUS PROPIETARIOS, OPERADORES, EMPLEADOS, AGENTES, PROVEEDORES DE TECNOLOGÍA Y AFILIADOS NO SERÁN RESPONSABLES POR NINGÚN DAÑO DIRECTO, INDIRECTO, INCIDENTAL, ESPECIAL, CONSECUENTE O PUNITIVO QUE RESULTE DEL USO O LA IMPOSIBILIDAD DE USO DEL SERVICIO.</span>
+          <span class="lang-en">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, VIASEGURA, GOSTAR DIGITAL LLC, ITS OWNERS, OPERATORS, EMPLOYEES, AGENTS, TECHNOLOGY PROVIDERS, AND AFFILIATES SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES RESULTING FROM THE USE OR INABILITY TO USE THE SERVICE.</span>
+        </p>
+      </div>
+      <p>
+        <span class="lang-es">Esto incluye, sin limitación: lesiones personales, daños a la propiedad, pérdida de datos, pérdida de ingresos, accidentes en zonas de trabajo, decisiones operacionales tomadas basándose en información del Servicio, e interrupción del negocio. El usuario asume toda la responsabilidad por las decisiones tomadas en el campo y en zonas de trabajo activas.</span>
+        <span class="lang-en">This includes, without limitation: personal injury, property damage, loss of data, loss of revenue, work zone accidents, operational decisions made based on information from the Service, and business interruption. The user assumes all responsibility for decisions made in the field and in active work zones.</span>
+      </p>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">4. Asunción de Riesgo</span>
+        <span class="lang-en">4. Assumption of Risk</span>
+      </div>
+      <p>
+        <span class="lang-es">Usted reconoce y acepta que: el trabajo en zonas viales es inherentemente peligroso, la información proporcionada por el Servicio puede no ser aplicable a las condiciones específicas de su lugar de trabajo, las condiciones en campo cambian constantemente y requieren evaluación profesional en tiempo real, usted es responsable de verificar toda la información con fuentes oficiales y personal competente antes de aplicarla, y ninguna herramienta informativa puede reemplazar la capacitación, certificación y supervisión adecuadas.</span>
+        <span class="lang-en">You acknowledge and agree that: roadway work is inherently dangerous, information provided by the Service may not be applicable to the specific conditions of your worksite, field conditions change constantly and require real-time professional evaluation, you are responsible for verifying all information with official sources and competent personnel before applying it, and no informational tool can replace proper training, certification, and supervision.</span>
+      </p>
+    </div>
+
+    <!-- Section 5 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">5. Indemnización</span>
+        <span class="lang-en">5. Indemnification</span>
+      </div>
+      <p>
+        <span class="lang-es">Usted acepta indemnizar, defender y mantener indemne a ViaSegura, GoStar Digital LLC, sus propietarios, operadores, empleados, agentes y afiliados de cualquier reclamación, daño, pérdida, responsabilidad, costo o gasto (incluyendo honorarios legales razonables) que surja de o esté relacionado con: su uso del Servicio, la violación de estos Términos, cualquier decisión operacional que usted tome basándose en la información del Servicio, y cualquier reclamación de terceros relacionada con su uso del Servicio.</span>
+        <span class="lang-en">You agree to indemnify, defend, and hold harmless ViaSegura, GoStar Digital LLC, its owners, operators, employees, agents, and affiliates from any claims, damages, losses, liabilities, costs, or expenses (including reasonable legal fees) arising from or related to: your use of the Service, violation of these Terms, any operational decisions you make based on information from the Service, and any third-party claims related to your use of the Service.</span>
+      </p>
+    </div>
+
+    <!-- Section 6 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">6. Precisión de la Información</span>
+        <span class="lang-en">6. Accuracy of Information</span>
+      </div>
+      <p>
+        <span class="lang-es">El Servicio utiliza inteligencia artificial para generar respuestas basadas en principios generales de seguridad vial. Aunque nos esforzamos por proporcionar información precisa y útil, NO garantizamos que la información sea completa, precisa, actualizada o aplicable a ninguna situación específica. La tecnología de inteligencia artificial puede generar respuestas incorrectas o incompletas. Siempre verifique la información con fuentes oficiales.</span>
+        <span class="lang-en">The Service uses artificial intelligence to generate responses based on general roadway safety principles. While we strive to provide accurate and useful information, we do NOT guarantee that the information is complete, accurate, up-to-date, or applicable to any specific situation. Artificial intelligence technology may generate incorrect or incomplete responses. Always verify information with official sources.</span>
+      </p>
+    </div>
+
+    <!-- Section 7 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">7. Suscripciones y Pagos</span>
+        <span class="lang-en">7. Subscriptions and Payments</span>
+      </div>
+      <p>
+        <span class="lang-es">El Servicio ofrece una prueba gratuita de una (1) hora. Después de la prueba, se requiere una suscripción paga para acceso continuado. Los pagos se procesan a través de Stripe. Las suscripciones se renuevan automáticamente al final de cada período de facturación. Puede cancelar su suscripción en cualquier momento. No se ofrecen reembolsos por períodos parciales.</span>
+        <span class="lang-en">The Service offers a free trial of one (1) hour. After the trial, a paid subscription is required for continued access. Payments are processed through Stripe. Subscriptions renew automatically at the end of each billing period. You may cancel your subscription at any time. No refunds are offered for partial periods.</span>
+      </p>
+    </div>
+
+    <!-- Section 8 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">8. Uso Aceptable</span>
+        <span class="lang-en">8. Acceptable Use</span>
+      </div>
+      <p>
+        <span class="lang-es">Al usar el Servicio, usted acepta no: utilizar el Servicio como sustituto de supervisión profesional o capacitación formal, redistribuir o revender el acceso al Servicio, intentar manipular o abusar del asistente de voz, presentar la información del Servicio como asesoría profesional certificada, ni usar el Servicio de manera que viole cualquier ley o regulación aplicable.</span>
+        <span class="lang-en">By using the Service, you agree not to: use the Service as a substitute for professional supervision or formal training, redistribute or resell access to the Service, attempt to manipulate or abuse the voice assistant, present information from the Service as certified professional advice, or use the Service in any manner that violates any applicable law or regulation.</span>
+      </p>
+    </div>
+
+    <!-- Section 9 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">9. Propiedad Intelectual</span>
+        <span class="lang-en">9. Intellectual Property</span>
+      </div>
+      <p>
+        <span class="lang-es">Todo el contenido del Servicio, incluyendo texto, gráficos, logotipos, diseño y software, es propiedad de ViaSegura o sus licenciantes y está protegido por las leyes de propiedad intelectual aplicables. No puede copiar, modificar, distribuir o crear obras derivadas sin autorización expresa por escrito.</span>
+        <span class="lang-en">All content of the Service, including text, graphics, logos, design, and software, is the property of ViaSegura or its licensors and is protected by applicable intellectual property laws. You may not copy, modify, distribute, or create derivative works without express written authorization.</span>
+      </p>
+    </div>
+
+    <!-- Section 10 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">10. Terminación</span>
+        <span class="lang-en">10. Termination</span>
+      </div>
+      <p>
+        <span class="lang-es">Nos reservamos el derecho de suspender o terminar su acceso al Servicio en cualquier momento, con o sin causa, con o sin previo aviso. Usted puede dejar de usar el Servicio y cancelar su suscripción en cualquier momento.</span>
+        <span class="lang-en">We reserve the right to suspend or terminate your access to the Service at any time, with or without cause, with or without notice. You may stop using the Service and cancel your subscription at any time.</span>
+      </p>
+    </div>
+
+    <!-- Section 11 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">11. Ley Aplicable</span>
+        <span class="lang-en">11. Governing Law</span>
+      </div>
+      <p>
+        <span class="lang-es">Estos Términos se regirán e interpretarán de acuerdo con las leyes del Estado Libre Asociado de Puerto Rico, sin tener en cuenta sus disposiciones sobre conflictos de leyes. Cualquier disputa que surja de estos Términos estará sujeta a la jurisdicción exclusiva de los tribunales de Puerto Rico.</span>
+        <span class="lang-en">These Terms shall be governed by and construed in accordance with the laws of the Commonwealth of Puerto Rico, without regard to its conflict of law provisions. Any dispute arising from these Terms shall be subject to the exclusive jurisdiction of the courts of Puerto Rico.</span>
+      </p>
+    </div>
+
+    <!-- Section 12 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">12. Cambios a estos Términos</span>
+        <span class="lang-en">12. Changes to These Terms</span>
+      </div>
+      <p>
+        <span class="lang-es">Nos reservamos el derecho de modificar estos Términos en cualquier momento. Los cambios entrarán en vigor al ser publicados en esta página. Su uso continuado del Servicio después de la publicación de cambios constituye su aceptación de los términos revisados.</span>
+        <span class="lang-en">We reserve the right to modify these Terms at any time. Changes will become effective upon posting on this page. Your continued use of the Service after posting of changes constitutes your acceptance of the revised terms.</span>
+      </p>
+    </div>
+
+    <!-- Section 13 -->
+    <div class="section">
+      <div class="section-title">
+        <span class="lang-es">13. Contacto</span>
+        <span class="lang-en">13. Contact</span>
+      </div>
+      <p>
+        <span class="lang-es">Si tiene preguntas sobre estos Términos de Uso, puede contactarnos a través de viasegura.zone. GoStar Digital LLC, San Juan, Puerto Rico.</span>
+        <span class="lang-en">If you have questions about these Terms of Use, you may contact us through viasegura.zone. GoStar Digital LLC, San Juan, Puerto Rico.</span>
+      </p>
+    </div>
+
+    <!-- FINAL REMINDER -->
+    <div class="highlight-box">
+      <p>
+        <span class="lang-es">⚠️ RECUERDE: ViaSegura es una herramienta de referencia informativa. Siempre siga las instrucciones de su supervisor, los protocolos de seguridad de su patrono y los reglamentos oficiales aplicables. La seguridad en zonas de trabajo es responsabilidad de todos.</span>
+        <span class="lang-en">⚠️ REMEMBER: ViaSegura is an informational reference tool. Always follow your supervisor's instructions, your employer's safety protocols, and applicable official regulations. Work zone safety is everyone's responsibility.</span>
+      </p>
+    </div>
+
+  </div>
+
+  <footer>
+    <div>ViaSegura — GoStar Digital LLC — viasegura.zone 🇵🇷</div>
+  </footer>
+
+  <script>
+    document.getElementById('btnES').addEventListener('click', function() {
+      document.body.classList.remove('en');
+      this.classList.add('active');
+      document.getElementById('btnEN').classList.remove('active');
+      document.documentElement.lang = 'es';
+    });
+    document.getElementById('btnEN').addEventListener('click', function() {
+      document.body.classList.add('en');
+      this.classList.add('active');
+      document.getElementById('btnES').classList.remove('active');
+      document.documentElement.lang = 'en';
+    });
+  </script>
+
+</body>
+</html>
