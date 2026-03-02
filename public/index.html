@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ViaSegura — Manual para Abanderados Vial de Puerto Rico</title>
+  <meta name="description" content="Manual para Abanderados Vial de Puerto Rico Nivel 1 por Bethzaida Cirino. AI-powered safety companion. Bilingual.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--deep:#0f1114;--surface:#161a1f;--card:#1c2127;--orange:#FF6B00;--orange-light:#FF9F45;--yellow:#FFD600;--white:#F2F2F2;--muted:#8A919A;--gradient:linear-gradient(135deg,#FF6B00,#FFD600);--radius:16px}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--deep);color:var(--white);min-height:100vh;overflow-x:hidden}
+
+    .caution-stripe{width:100%;height:8px;background:repeating-linear-gradient(-45deg,var(--yellow),var(--yellow) 12px,#111 12px,#111 24px);position:fixed;top:0;left:0;z-index:200}
+    body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,107,0,.05) 0%,transparent 60%),radial-gradient(ellipse at 50% 100%,rgba(255,214,0,.03) 0%,transparent 50%);pointer-events:none;z-index:0}
+    .glow-orb{position:fixed;width:600px;height:600px;border-radius:50%;filter:blur(180px);opacity:.1;pointer-events:none;z-index:0}
+    .glow-orb.orange{background:var(--orange);top:-200px;left:50%;transform:translateX(-50%)}
+
+    .lang-toggle{position:fixed;top:20px;right:20px;z-index:150;display:flex;background:var(--surface);border:1px solid rgba(255,107,0,.15);border-radius:50px;overflow:hidden}
+    .lang-btn{padding:8px 16px;font-size:12px;font-weight:600;border:none;background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif}
+    .lang-btn.active{background:var(--gradient);color:var(--deep)}
+
+    .lang-es{display:inline}.lang-en{display:none}
+    body.en .lang-es{display:none}body.en .lang-en{display:inline}
+
+    .page{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:0 24px}
+
+    /* Hero */
+    .hero{min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 0 40px}
+    .hero-image{width:240px;max-width:60%;border-radius:20px;margin-bottom:24px;animation:fadeInDown .8s ease;filter:drop-shadow(0 0 40px rgba(255,107,0,.3))}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 20px;border-radius:50px;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.15);font-size:12px;font-weight:600;color:var(--orange);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px;animation:fadeInUp .6s ease .1s both}
+    .badge::before{content:'';width:8px;height:8px;border-radius:50%;background:#4ADE80;box-shadow:0 0 8px #4ADE80;animation:pulse-dot 2s infinite}
+    @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+    .hero-title{font-size:clamp(28px,6vw,44px);font-weight:800;line-height:1.1;margin-bottom:8px;animation:fadeInUp .6s ease .2s both}
+    .hero-title .accent{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-subtitle{font-size:clamp(13px,2.5vw,16px);letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:24px;font-weight:500;animation:fadeInUp .6s ease .3s both}
+    .hero-desc{max-width:560px;font-size:15px;line-height:1.7;color:var(--muted);font-weight:300;margin-bottom:32px;animation:fadeInUp .6s ease .4s both}
+    .hero-author{font-size:13px;color:var(--orange);font-weight:600;margin-bottom:8px;animation:fadeInUp .6s ease .45s both}
+    .hero-cred{font-size:11px;color:var(--muted);animation:fadeInUp .6s ease .5s both}
+
+    /* Section header */
+    .section-header{text-align:center;padding:40px 0 24px}
+    .section-label{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+    .section-title{font-size:clamp(22px,5vw,32px);font-weight:800}
+
+    /* Module grid */
+    .modules{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;padding-bottom:48px}
+    .mod-card{background:var(--card);border:1px solid rgba(255,107,0,.06);border-radius:var(--radius);padding:28px 24px;text-decoration:none;color:var(--white);transition:all .3s ease;position:relative;overflow:hidden;display:flex;flex-direction:column}
+    .mod-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gradient);opacity:0;transition:opacity .3s}
+    .mod-card:hover{border-color:rgba(255,107,0,.2);transform:translateY(-4px);box-shadow:0 8px 32px rgba(255,107,0,.08)}
+    .mod-card:hover::before{opacity:1}
+    .mod-card:active{transform:scale(.98)}
+    .mod-num{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--orange);margin-bottom:6px}
+    .mod-icon{font-size:32px;margin-bottom:12px}
+    .mod-title{font-size:15px;font-weight:700;margin-bottom:6px;line-height:1.3}
+    .mod-desc{font-size:12px;color:var(--muted);line-height:1.5;flex:1}
+    .mod-arrow{font-size:12px;color:var(--orange);font-weight:600;margin-top:12px;letter-spacing:1px;text-transform:uppercase;transition:transform .3s}
+    .mod-card:hover .mod-arrow span{display:inline-block;transform:translateX(4px);transition:transform .3s}
+
+    /* CTA */
+    .cta-section{text-align:center;padding:32px 0 48px}
+    .cta-wrap{position:relative;display:inline-block}
+    .cta-btn{display:inline-block;padding:18px 48px;border-radius:50px;background:var(--gradient);color:var(--deep);font-size:17px;font-weight:800;text-decoration:none;font-family:'Inter',sans-serif;transition:all .3s;box-shadow:0 4px 24px rgba(255,107,0,.35);position:relative;z-index:2}
+    .cta-btn:hover{transform:translateY(-3px);box-shadow:0 8px 36px rgba(255,107,0,.5)}
+    .cta-btn:active{transform:scale(.97)}
+    .cta-ring{position:absolute;top:50%;left:50%;width:100%;height:100%;border-radius:50px;border:2px solid rgba(255,107,0,.4);transform:translate(-50%,-50%);animation:cta-pulse 2s ease-in-out infinite;pointer-events:none;z-index:1}
+    .cta-ring-2{position:absolute;top:50%;left:50%;width:100%;height:100%;border-radius:50px;border:2px solid rgba(255,214,0,.25);transform:translate(-50%,-50%);animation:cta-pulse 2s ease-in-out .6s infinite;pointer-events:none;z-index:1}
+    @keyframes cta-pulse{0%{width:100%;height:100%;opacity:1}100%{width:calc(100% + 40px);height:calc(100% + 40px);opacity:0}}
+    .cta-sub{display:block;margin-top:14px;font-size:12px;font-weight:600;color:var(--muted)}
+
+    /* Divider */
+    .divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--orange),transparent);margin:0 auto;border:none}
+
+    /* About Author */
+    .author-section{padding:48px 0;max-width:700px;margin:0 auto}
+    .author-card{background:var(--card);border:1px solid rgba(255,107,0,.06);border-radius:var(--radius);padding:32px 28px}
+    .author-card h3{font-size:18px;font-weight:800;margin-bottom:12px}
+    .author-card h3 .accent{color:var(--orange)}
+    .author-card p{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:12px}
+    .author-card p:last-child{margin-bottom:0}
+    .author-creds{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+    .cred-badge{padding:6px 14px;border-radius:50px;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.1);font-size:11px;font-weight:600;color:var(--orange)}
+
+    /* Footer */
+    footer{position:relative;z-index:1;text-align:center;padding:40px 24px;border-top:1px solid rgba(255,107,0,.06);font-size:13px;color:var(--muted)}
+    footer a{color:var(--muted);text-decoration:none;font-weight:500}
+    footer a:hover{color:var(--orange)}
+
+    @keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+
+    @media(max-width:600px){
+      .hero{padding:60px 0 32px;min-height:auto}
+      .hero-image{width:180px}
+      .modules{grid-template-columns:1fr;gap:12px}
+      .mod-card{padding:24px 20px}
+      .lang-btn{padding:6px 12px;font-size:11px}
+      .cta-btn{padding:16px 36px;font-size:15px}
+      .author-card{padding:24px 20px}
+      .glow-orb{width:400px;height:400px}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="caution-stripe"></div>
+  <div class="glow-orb orange"></div>
+
+  <div class="lang-toggle">
+    <button class="lang-btn active" id="btnES" onclick="setLang('es')">Español</button>
+    <button class="lang-btn" id="btnEN" onclick="setLang('en')">English</button>
+  </div>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <section class="hero">
+      <img src="viasegura-hero.png" alt="ViaSegura" class="hero-image">
+      <div class="badge">
+        <span class="lang-es">Manual + Asistente de Voz</span>
+        <span class="lang-en">Manual + Voice Assistant</span>
+      </div>
+      <h1 class="hero-title">
+        <span class="lang-es"><span class="accent">Manual para Abanderados</span><br>Vial de Puerto Rico</span>
+        <span class="lang-en"><span class="accent">Road Flagger</span><br>Training Manual — Puerto Rico</span>
+      </h1>
+      <p class="hero-subtitle">Nivel 1</p>
+      <p class="hero-desc">
+        <span class="lang-es">El primer manual completo para abanderados viales en Puerto Rico. 8 módulos, 39 secciones, alineado con la 11.ª edición del MUTCD. Incluye acceso a Leo, tu experto de seguridad vial con IA disponible 24/7.</span>
+        <span class="lang-en">The first complete training manual for roadway flaggers in Puerto Rico. 8 modules, 39 sections, aligned with the 11th edition of the MUTCD. Includes access to Leo, your AI-powered safety expert available 24/7.</span>
+      </p>
+      <div class="hero-author">Bethzaida Cirino</div>
+      <div class="hero-cred">OSHA 30-Hour · Able Safety Consulting (NY) · ATSSA National</div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- MODULES -->
+    <div class="section-header">
+      <div class="section-label">
+        <span class="lang-es">Explora el Manual</span>
+        <span class="lang-en">Explore the Manual</span>
+      </div>
+      <div class="section-title">
+        <span class="lang-es">8 Módulos</span>
+        <span class="lang-en">8 Modules</span>
+      </div>
+    </div>
+
+    <div class="modules">
+
+      <a href="/modulo/1" class="mod-card">
+        <div class="mod-num">MÓDULO 1</div>
+        <div class="mod-icon">🏗️</div>
+        <div class="mod-title">
+          <span class="lang-es">Fundamentos</span>
+          <span class="lang-en">Foundations</span>
+        </div>
+        <div class="mod-desc">
+          <span class="lang-es">Qué es un abanderado, su rol, funciones, responsabilidades y dónde trabajan. La base de todo.</span>
+          <span class="lang-en">What is a flagger, their role, functions, responsibilities, and where they work. The foundation of everything.</span>
+        </div>
+        <div class="mod-arrow">
+          <span class="lang-es">Explorar <span>→</span></span>
+          <span class="lang-en">Explore <span>→</span></span>
+        </div>
+      </a>
+
+      <a href="/modulo/2" class="mod-card">
+        <div class="mod-num">MÓDULO 2</div>
+        <div class="mod-icon">👷</div>
+        <div class="mod-title">
+          <span class="lang-es">Estándares Profesionales</span>
+          <span class="lang-en">Professional Standards</span>
+        </div>
+        <div class="mod-desc">
+          <span class="lang-es">Requisitos, deberes, relaciones públicas, conducta y ética profesional del abanderado.</span>
+          <span class="lang-en">Requirements, duties, public relations, conduct and professional ethics for flaggers.</span>
+        </div>
+        <div class="mod-arrow">
+          <span class="lang-es">Explorar <span>→</span></span>
+          <span class="lang-en">Explore <span>→</span></span>
+        </div>
+      </a>
+
+      <a href="/modulo/3" class="mod-card">
+        <div class="mod-num">MÓDULO 3</div>
+        <div class="mod-icon">📋</div>
+        <div class="mod-title">
+          <span class="lang-es">Regulaciones y Equipo</span>
+          <span class="lang-en">Regulations & Equipment</span>
+        </div>
+        <div class="mod-desc">
+          <span class="lang-es">PR OSHA, MUTCD, sanciones, vestimenta obligatoria, equipo de comunicación y herramientas básicas.</span>
+          <span class="lang-en">PR OSHA, MUTCD, sanctions, mandatory PPE, communication equipment, and basic tools.</span>
+        </div>
+        <div class="mod-arrow">
+          <span class="lang-es">Explorar <span>→</span></span>
+          <span class="lang-en">Explore <span>→</span></span>
+        </div>
+      </a>
+
+      <a href="/modulo/4" class="mod-card">
+        <div class="mod-num">MÓDULO 4</div>
+        <div class="mod-icon">🚦</div>
+        <div class="mod-title">
+          <span class="lang-es">Señalización y Control de Tránsito</span>
+          <span class="lang-en">Signaling & Traffic Control</span>
+        </div>
+        <div class="mod-desc">
+          <span class="lang-es">Paletas PARE/DESPACIO, banderas, dispositivos de señalización y canalización, procedimientos de control.</span>
+          <span class="lang-en">STOP/SLOW paddles, flags, signaling and channelization devices, control procedures.</span>
+        </div>
+        <div class="mod-arrow">
+          <span class="lang-es">Explorar <span>→</span></span>
+          <span class="lang-en">Explore <span>→</span></span>
+        </div>
+      </a>
+
+      <a href="/modulo/5" class="mod-card">
+        <div class="mod-num">MÓDULO 5</div>
+        <div class="mod-icon">🔶</div>
+        <div class="mod-title">
+          <span class="lang-es">Zona de Trabajo</span>
+          <span class="lang-en">Work Zone Components</span>
+        </div>
+        <div class="mod-desc">
+          <span class="lang-es">Componentes de la zona TTC, posicionamiento seguro del abanderado e importancia de la seguridad.</span>
+          <span class="lang-en">TTC zone components, safe flagger positioning, and the importance of safety.</span>
+        </div>
+        <div class="mod-arrow">
+          <span class="lang-es">Explorar <span>→</span></span>
+          <span class="lang-en">Explore <span>→</span></span>
+        </div>
+      </a>
+
+      <a href="/modulo/6" class="mod-card">
+        <div class="mod-num">MÓDULO 6</div>
+        <div class="mod-icon">🚨</div>
+        <div class="mod-title">
+          <span class="lang-es">Protocolos de Emergencia</span>
+          <span class="lang-en">Emergency Protocols</span>
+        </div>
+        <div class="mod-desc">
+          <span class="lang-es">Emergencias, climas extremos, interacción con la policía y protocolos básicos en la zona de trabajo.</span>
+          <span class="lang-en">Emergencies, extreme weather, police interaction, and basic work zone protocols.</span>
+        </div>
+        <div class="mod-arrow">
+          <span class="lang-es">Explorar <span>→</span></span>
+          <span class="lang-en">Explore <span>→</span></span>
+        </div>
+      </a>
+
+      <a href="/modulo/7" class="mod-card">
+        <div class="mod-num">MÓDULO 7</div>
+        <div class="mod-icon">⚠️</div>
+        <div class="mod-title">
+          <span class="lang-es">Guía Práctica</span>
+          <span class="lang-en">Practical Guidance</span>
+        </div>
+        <div class="mod-desc">
+          <span class="lang-es">Acciones no autorizadas, coordinación inicial y consejos prácticos para el día a día del abanderado.</span>
+          <span class="lang-en">Unauthorized actions, initial coordination, and practical tips for daily flagger work.</span>
+        </div>
+        <div class="mod-arrow">
+          <span class="lang-es">Explorar <span>→</span></span>
+          <span class="lang-en">Explore <span>→</span></span>
+        </div>
+      </a>
+
+      <a href="/modulo/8" class="mod-card">
+        <div class="mod-num">MÓDULO 8</div>
+        <div class="mod-icon">🎓</div>
+        <div class="mod-title">
+          <span class="lang-es">Certificación y Futuro</span>
+          <span class="lang-en">Certification & Future</span>
+        </div>
+        <div class="mod-desc">
+          <span class="lang-es">Capacitación, certificación, desafíos, recompensas y el futuro de la profesión del abanderado.</span>
+          <span class="lang-en">Training, certification, challenges, rewards, and the future of the flagger profession.</span>
+        </div>
+        <div class="mod-arrow">
+          <span class="lang-es">Explorar <span>→</span></span>
+          <span class="lang-en">Explore <span>→</span></span>
+        </div>
+      </a>
+
+    </div>
+
+    <hr class="divider">
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <div class="cta-wrap">
+        <a href="/tour" class="cta-btn">
+          <span class="lang-es">🎙️ Habla con Leo — Experto 24/7</span>
+          <span class="lang-en">🎙️ Talk to Leo — Expert 24/7</span>
+        </a>
+        <div class="cta-ring"></div>
+        <div class="cta-ring-2"></div>
+      </div>
+      <span class="cta-sub">
+        <span class="lang-es">Tu asistente de seguridad vial con inteligencia artificial</span>
+        <span class="lang-en">Your AI-powered roadway safety assistant</span>
+      </span>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ABOUT AUTHOR -->
+    <section class="author-section">
+      <div class="author-card">
+        <h3>
+          <span class="lang-es">Sobre la <span class="accent">Autora</span></span>
+          <span class="lang-en">About the <span class="accent">Author</span></span>
+        </h3>
+        <p>
+          <span class="lang-es">Bethzaida Cirino es Técnica de Campo y Documentación Operacional en proyectos de construcción de carreteras en Puerto Rico. Con años de experiencia directa en obras viales junto a ingenieros, obreros y personal de seguridad, creó este manual para llenar el vacío que observó en el campo: la falta de materiales educativos accesibles y claros para los abanderados de Puerto Rico.</span>
+          <span class="lang-en">Bethzaida Cirino is a Field Technician and Operational Documentation specialist in highway construction projects in Puerto Rico. With years of direct experience on roadway projects alongside engineers, workers, and safety personnel, she created this manual to fill the gap she observed in the field: the lack of accessible, clear training materials for Puerto Rico's flaggers.</span>
+        </p>
+        <div class="author-creds">
+          <span class="cred-badge">OSHA 30-Hour</span>
+          <span class="cred-badge">Able Safety Consulting (NY)</span>
+          <span class="cred-badge">ATSSA National</span>
+          <span class="cred-badge">MUTCD 11th Edition</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p style="margin-bottom:6px;">© 2026 GoStar Digital LLC. All Rights Reserved.</p>
+    <p style="margin-bottom:10px;">ViaSegura — San Juan, Puerto Rico 🇵🇷</p>
+    <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a>
+  </footer>
+
+  <script>
+    function setLang(lang){
+      if(lang==='en'){document.body.classList.add('en');document.getElementById('btnEN').classList.add('active');document.getElementById('btnES').classList.remove('active');}
+      else{document.body.classList.remove('en');document.getElementById('btnES').classList.add('active');document.getElementById('btnEN').classList.remove('active');}
+    }
+  </script>
+</body>
+</html>
